@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
+
 use App\Http\Controllers\Admin\ProcedureController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
@@ -22,7 +24,8 @@ use App\Http\Controllers\Admin\TypeprocedureController;
 */
 
 Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->name('admin.')->group(function (){
-    Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::view('dashboard', 'admin.dashboard')->name('dashboard');
+    Route::view('profile', 'admin.profile')->name('profile');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
@@ -31,4 +34,6 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->name('admin.'
     Route::resource('areas', AreaController::class);
     Route::resource('typeprocedures', TypeprocedureController::class);
     Route::resource('procedures', ProcedureController::class);
+
+
 });
